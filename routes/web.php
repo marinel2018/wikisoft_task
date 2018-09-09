@@ -17,36 +17,73 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth', 'web']], function () {
+
+    Route::get('/home', 'HomeController@index')->name('home');
 
 //Company
 
-Route::get('/company', [
-    'uses' => 'CompanyController@index',
-    'as' => 'company.index'
-]);
+    Route::get('/company', [
+        'uses' => 'CompanyController@index',
+        'as' => 'company.index'
+    ]);
 
-Route::get('company/create', [
-    'uses' => 'CompanyController@create',
-    'as' => 'company.create'
-]);
+    Route::get('company/create', [
+        'uses' => 'CompanyController@create',
+        'as' => 'company.create'
+    ]);
 
-Route::post('company/store', [
-    'uses' => 'CompanyController@store',
-    'as' => 'company.store'
-]);
+    Route::post('company/store', [
+        'uses' => 'CompanyController@store',
+        'as' => 'company.store'
+    ]);
 
-Route::get('company/{id}/edit', [
-    'uses' => 'CompanyController@edit',
-    'as' => 'company.edit'
-]);
+    Route::get('company/{id}/edit', [
+        'uses' => 'CompanyController@edit',
+        'as' => 'company.edit'
+    ]);
 
-Route::post('company/update', [
-    'uses' => 'CompanyController@update',
-    'as' => 'company.update'
-]);
+    Route::post('company/update', [
+        'uses' => 'CompanyController@update',
+        'as' => 'company.update'
+    ]);
 
-Route::post('/company/destroy', [
-    'uses' => 'CompanyController@destroy',
-    'as' => 'company.destroy'
-]);
+    Route::post('/company/destroy', [
+        'uses' => 'CompanyController@destroy',
+        'as' => 'company.destroy'
+    ]);
+
+    //emploee
+
+    Route::get('/emploee', [
+        'uses' => 'emploeeController@index',
+        'as' => 'emploee.index'
+    ]);
+
+    Route::get('emploee/create', [
+        'uses' => 'emploeeController@create',
+        'as' => 'emploee.create'
+    ]);
+
+    Route::post('emploee/store', [
+        'uses' => 'emploeeController@store',
+        'as' => 'emploee.store'
+    ]);
+
+    Route::get('emploee/{id}/edit', [
+        'uses' => 'emploeeController@edit',
+        'as' => 'emploee.edit'
+    ]);
+
+    Route::post('emploee/update', [
+        'uses' => 'emploeeController@update',
+        'as' => 'emploee.update'
+    ]);
+
+    Route::post('/emploee/destroy', [
+        'uses' => 'emploeeController@destroy',
+        'as' => 'emploee.destroy'
+    ]);
+
+
+});

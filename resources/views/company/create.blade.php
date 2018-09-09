@@ -8,7 +8,7 @@
                     <div class="card-header text-center">Forme </div>
 
                     <div class="card-body">
-                        <form action="{{ route('company.store') }}" method="post">
+                        <form action="{{ route('company.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Emri i kompanise</label>
@@ -25,10 +25,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="logo">Upload Logo</label>
-                                <input type="text" name="logo" class="form-control" id="logo" placeholder="Upload">
+                                <input type="file" name="logo" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }} " id="logo">
+                                @if ($errors->has('logo'))
+                                    <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('logo') }}</strong>
+                                </span>
+                                @endif
                             </div>
                             <div class="form-group">
-                                <label for="website">Upload Logo</label>
+                                <label for="website">Website</label>
                                 <input type="website" name="website" class="form-control" id="website" placeholder="Website">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>

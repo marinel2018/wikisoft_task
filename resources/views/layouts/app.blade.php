@@ -23,11 +23,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="#">
-                    Emploees
+                <a class="navbar-brand btn btn-primary" style="color: white" href="{{ route('emploee.index') }}">
+                    Punonjes
                 </a>
-                <a class="navbar-brand" href="{{ route('company.index') }}">
-                    Companies
+                <a class="navbar-brand btn btn-primary" style="color: white" href="{{ route('company.index') }}">
+                    Kompani
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <!--<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>-->
                             </li>
                         @else
                             <li class="nav-item dropdown">

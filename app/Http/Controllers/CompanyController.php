@@ -6,10 +6,11 @@ use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+
 class CompanyController extends Controller
 {
     public function index(){
-        $companies = Company::all();
+        $companies = Company::orderBy('created_at', 'desc')->paginate(10);
         return view('company.index', compact('companies'));
     }
 
@@ -20,23 +21,34 @@ class CompanyController extends Controller
     public function store(Request $request){
 
         $rules = [
-            'name' => 'required'
+            'name' => 'required',
+            'logo' => 'required|image|dimensions:min_width=100,min_heigh=100|max:1024'
         ];
         $messages = [
-            'name.required' => 'Shkruani emrin e kompanise'
+            'name.required' => 'Shkruani emrin e kompanise',
+            'logo.image' => 'Duhet te zgjidhni vetem image',
+            'logo.dimensions' => 'Logoja duhet te jete e pakta 100x100 pixel',
+            'logo.max' => 'Foto duhet te jete me e vogel se 1 mb',
+            'logo.required' => 'Zgjidhni nje logo'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()){
             return redirect()->back()->withInput()->withErrors($validator);
         };
+        $logo = $request->file('logo');
+        $logo_name = $logo->getClientOriginalName();
+
+        $logo->storeAs('public', $logo->getClientOriginalName());
 
         Company::create([
             'name' => $request['name'],
             'email' => $request['email'],
-            'logo' => $request['logo'],
-            'website' => $request['website']
+            'website' => $request['website'],
+            'logo' => $logo_name
         ]);
+
+
 
         return redirect()->route('company.index');
 
@@ -50,22 +62,31 @@ class CompanyController extends Controller
     public function update(Request $request){
 
         $rules = [
-            'name' => 'required'
+            'name' => 'required',
+            'logo' => 'required|image|dimensions:min_width=100,min_heigh=100|max:1024'
         ];
         $messages = [
-            'name.required' => 'Shkruani emrin e kompanise'
+            'name.required' => 'Shkruani emrin e kompanise',
+            'logo.image' => 'Duhet te zgjidhni vetem image',
+            'logo.dimensions' => 'Logoja duhet te jete e pakta 100x100 pixel',
+            'logo.max' => 'Foto duhet te jete me e vogel se 1 mb',
+            'logo.required' => 'Zgjidhni Logon'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()){
             return redirect()->back()->withInput()->withErrors($validator);
         };
+        $logo = $request->file('logo');
+        $logo_name = $logo->getClientOriginalName();
+
+        $logo->storeAs('public', $logo->getClientOriginalName());
 
         Company::find($request['id'])->update([
             'name' => $request['name'],
             'email' => $request['email'],
-            'logo' => $request['logo'],
-            'website' => $request['website']
+            'website' => $request['website'],
+            'logo' => $logo_name
         ]);
 
         return redirect()->route('company.index');
