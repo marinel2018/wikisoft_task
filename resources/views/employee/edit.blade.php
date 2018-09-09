@@ -8,7 +8,7 @@
                     <div class="card-header text-center">Forme </div>
 
                     <div class="card-body">
-                        <form action="{{ route('emploee.update') }}" method="post">
+                        <form action="{{ route('employee.update') }}" method="post">
                             @csrf
                             <input type="hidden" value="{{ $emploee->id }}" name="id">
                             <div class="form-group">

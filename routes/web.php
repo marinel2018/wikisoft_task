@@ -55,34 +55,34 @@ Route::group(['middleware' => ['auth', 'web']], function () {
 
     //emploee
 
-    Route::get('/emploee', [
-        'uses' => 'emploeeController@index',
-        'as' => 'emploee.index'
+    Route::get('/employee', [
+        'uses' => 'EmployeeController@index',
+        'as' => 'employee.index'
     ]);
 
     Route::get('emploee/create', [
-        'uses' => 'emploeeController@create',
-        'as' => 'emploee.create'
+        'uses' => 'EmployeeController@create',
+        'as' => 'employee.create'
     ]);
 
-    Route::post('emploee/store', [
-        'uses' => 'emploeeController@store',
-        'as' => 'emploee.store'
+    Route::post('employee/store', [
+        'uses' => 'EmployeeController@store',
+        'as' => 'employee.store'
     ]);
 
-    Route::get('emploee/{id}/edit', [
-        'uses' => 'emploeeController@edit',
-        'as' => 'emploee.edit'
+    Route::get('employee/{id}/edit', [
+        'uses' => 'EmployeeController@edit',
+        'as' => 'employee.edit'
     ]);
 
-    Route::post('emploee/update', [
-        'uses' => 'emploeeController@update',
-        'as' => 'emploee.update'
+    Route::post('employee/update', [
+        'uses' => 'EmployeeController@update',
+        'as' => 'employee.update'
     ]);
 
-    Route::post('/emploee/destroy', [
-        'uses' => 'emploeeController@destroy',
-        'as' => 'emploee.destroy'
+    Route::post('/employee/destroy', [
+        'uses' => 'EmployeeController@destroy',
+        'as' => 'employee.destroy'
     ]);
 
 

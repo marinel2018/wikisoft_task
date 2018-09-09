@@ -8,7 +8,7 @@
                     <div class="card-header text-center">Forme </div>
 
                     <div class="card-body">
-                        <form action="{{ route('emploee.store') }}" method="post">
+                        <form action="{{ route('employee.store') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="first_name">Emri</label>

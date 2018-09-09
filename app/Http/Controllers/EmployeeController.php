@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Emploee;
-
+use App\Employee;
 use Illuminate\Http\Request;
 use App\Company;
 use Illuminate\Support\Facades\Validator;
 
-class emploeeController extends Controller
+class EmployeeController extends Controller
 {
     public function index(){
-        $emploees = Emploee::orderBy('created_at', 'desc')->paginate(10);
-        return view('emploee.index', compact('emploees'));
+        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        return view('employee.index', compact('employees'));
     }
 
     public function create(){
         $companies = Company::all();
-        return view('emploee.create', compact('companies'));
+        return view('employee.create', compact('companies'));
     }
 
     public function store(Request $request){
@@ -36,7 +35,7 @@ class emploeeController extends Controller
             return redirect()->back()->withInput()->withErrors($validator);
         };
 
-        emploee::create([
+        Employee::create([
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
             'email' => $request['email'],
@@ -46,14 +45,14 @@ class emploeeController extends Controller
 
 
 
-        return redirect()->route('emploee.index');
+        return redirect()->route('employee.index');
 
     }
 
     public function edit($id){
         $companies = Company::all();
-        $emploee = emploee::find($id);
-        return view('emploee.edit', compact('emploee', 'companies'));
+        $emploee = Employee::find($id);
+        return view('employee.edit', compact('employee', 'companies'));
     }
 
     public function update(Request $request){
@@ -72,7 +71,7 @@ class emploeeController extends Controller
             return redirect()->back()->withInput()->withErrors($validator);
         };
 
-        emploee::find($request['id'])->update([
+        Employee::find($request['id'])->update([
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
             'email' => $request['email'],
@@ -80,13 +79,13 @@ class emploeeController extends Controller
             'phone' => $request['contact_number']
         ]);
 
-        return redirect()->route('emploee.index');
+        return redirect()->route('employee.index');
 
     }
 
     public function destroy(Request $request){
-        $emploee = emploee::find($request['id']);
-        $emploee->delete();
+        $employee = Employee::find($request['id']);
+        $employee->delete();
         return redirect()->back();
     }
 }

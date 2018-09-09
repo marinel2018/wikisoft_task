@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand btn btn-primary" style="color: white" href="{{ route('emploee.index') }}">
+                <a class="navbar-brand btn btn-primary" style="color: white" href="{{ route('employee.index') }}">
                     Punonjes
                 </a>
                 <a class="navbar-brand btn btn-primary" style="color: white" href="{{ route('company.index') }}">

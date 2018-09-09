@@ -13,6 +13,6 @@ class Company extends Model
     ];
 
     public function emploee(){
-        return $this->hasMany('App\Emploee');
+        return $this->hasMany('App\Employee');
     }
 }
