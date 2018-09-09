@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Emploee;
+
 use Illuminate\Http\Request;
 use App\Company;
 use Illuminate\Support\Facades\Validator;
@@ -11,7 +12,6 @@ class emploeeController extends Controller
 {
     public function index(){
         $emploees = Emploee::orderBy('created_at', 'desc')->paginate(10);
-
         return view('emploee.index', compact('emploees'));
     }
 

@@ -27,7 +27,7 @@
                                     <th scope="row">{{ $key + 1 }}</th>
                                     <td>{{ $emploee->first_name }}</td>
                                     <td>{{ $emploee->last_name }}</td>
-                                    <td>{{ $emploee->category_id->name }}</td>
+                                    <td>{{ $emploee->category_id }}</td>
                                     <td>{{ $emploee->email }}</td>
                                     <td>{{ $emploee->phone }}</td>
                                     <td><a class="btn btn-primary" href="{{ route('emploee.edit', ['id' => $emploee->id]) }}">Edit</a></td>
